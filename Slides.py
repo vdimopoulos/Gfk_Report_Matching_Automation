@@ -76,11 +76,52 @@ class PPCreatorWindow(customtkinter.CTkToplevel):
         icon_path = "gfk.ico"
         self.after(250, lambda: self.iconbitmap(icon_path))
         self.title('Power Point Creator')
-        self.geometry("400x300")
+        self.geometry("400x500")
         
         self.label = customtkinter.CTkLabel(self, text="Power Point Creator Window")
         self.label.pack(padx=20, pady=20)
 
+        def browse_file_option1():
+            file_path = tk.filedialog.askopenfilename(parent=self,filetypes=[("PowerPoint files", "*.pptx")],initialdir="/")
+            self.source_entry1.delete(0, tk.END)
+            self.source_entry1.insert(0, file_path)
+
+        self.source_label1 =customtkinter.CTkLabel(self, text="Template File Source:")
+        self.source_label1.pack()
+        self.source_entry1 = customtkinter.CTkEntry(self, width=350)
+        self.source_entry1.pack(pady=5)
+        self.browse_button1 = customtkinter.CTkButton(self, text="Browse",text_color='black',fg_color="orange",border_width=2,border_color="black", command=browse_file_option1)
+        self.browse_button1.pack(pady=10)
+
+        def browse_file_option2():
+            file_path = tk.filedialog.askopenfilename(parent=self,filetypes=[("PowerPoint files", "*.pptx")],initialdir="/")
+            self.source_entry2.delete(0, tk.END)
+            self.source_entry2.insert(0, file_path)
+
+        self.source_label2 =customtkinter.CTkLabel(self, text="Deck File Source:")
+        self.source_label2.pack()
+        self.source_entry2 = customtkinter.CTkEntry(self, width=350)
+        self.source_entry2.pack(pady=5)
+        self.browse_button2 = customtkinter.CTkButton(self, text="Browse",text_color='black',fg_color="orange",border_width=2,border_color="black", command=browse_file_option2)
+        self.browse_button2.pack(pady=10)
+
+        def browse_file_destination():
+            file_path = tk.filedialog.askdirectory(parent=self,initialdir="/")
+            self.destination_entry.delete(0, tk.END)
+            self.destination_entry.insert(0, file_path)
+
+        self.destination_label =customtkinter.CTkLabel(self, text="Destination File Location")
+        self.destination_label.pack()
+        self.destination_entry = customtkinter.CTkEntry(self, width=350)
+        self.destination_entry.pack(pady=5)
+        self.browse_button3 = customtkinter.CTkButton(self, text="Browse",text_color='black',fg_color="orange",border_width=2,border_color="black", command=browse_file_destination)
+        self.browse_button3.pack(pady=10)
+
+        self.ok_button1 =customtkinter.CTkButton(self, text="OK",text_color='black',fg_color="orange",border_width=2,border_color="black")
+        self.ok_button1.pack(side=customtkinter.LEFT,padx=10)
+        
+        self.close_button = customtkinter.CTkButton(self, text="Close",text_color='black',fg_color="orange",border_width=2,border_color="black", command=self.destroy)
+        self.close_button.pack(side=customtkinter.RIGHT, padx=10)
 
 class App(customtkinter.CTk):
     def __init__(self, *args, **kwargs):
