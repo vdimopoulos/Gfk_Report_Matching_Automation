@@ -7,16 +7,6 @@ from collections import defaultdict
 class ReportListCreator:
     
     def create_report_list(source):
-        
-        '''parser = argparse.ArgumentParser()
-        parser.add_argument(
-            "-r",
-            "--report",
-            action="store_true",
-            help="Returns the Report Groups and Sheet IDs of the template",
-        )
-        args = parser.parse_args()
-        report = args.report'''
 
         ppt1 = win32com.client.Dispatch("PowerPoint.Application")
         ppt1.Visible = True
@@ -60,21 +50,6 @@ class ReportListCreator:
                     sheets_dict[RG_text].add(ID_text)
         temp.Close()
         ppt1.Quit()
-
-
-        '''def export_report(data, filename):
-            with open(filename, "w") as file:
-                for key, values in data.items():
-                    file.write(f"Report Group {key}:\n")
-                    for i, value in enumerate(values, 1):
-                        file.write(f"Sheet ID {value}, ")
-                        if i % 5 == 0:  # Insert a line break every 5 values
-                            file.write("\n")
-                    file.write("\n")  # Add an additional line break between keys
-
-            # Assuming your dictionary is named 'my_dict' and you want to export to 'report.txt'
-        export_report(sheets_dict, "reports.txt")'''
-
         output_string = ""
 
         for key, values in sheets_dict.items():

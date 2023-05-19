@@ -1,6 +1,6 @@
 import customtkinter
 import tkinter as tk
-from report_list_creator import ReportListCreator as rlc
+from report_list_creator_test import ReportListCreatorTest as rlc
 
 
 class ReportListWindow(customtkinter.CTkToplevel):
@@ -39,8 +39,8 @@ class ReportListWindow(customtkinter.CTkToplevel):
 
         def run_command(input_string):
         # Replace with your command or function that processes the input string
-            input_string = input_string.replace('/', '\\')
-            result = rlc.create_report_list(input_string)
+            result = rlc.extract_codes_from_pptx(input_string)
+            
          # Create a new window for displaying the result
             icon_path = "gfk.ico"
             result_window = customtkinter.CTkToplevel(self)
