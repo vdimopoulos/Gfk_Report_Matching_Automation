@@ -1,6 +1,7 @@
 import customtkinter
 import tkinter as tk
 from report_list_creator_test import ReportListCreatorTest as rlc
+from matcher import Matcher
 
 
 class ReportListWindow(customtkinter.CTkToplevel):
@@ -83,6 +84,13 @@ class PPCreatorWindow(customtkinter.CTkToplevel):
         self.label = customtkinter.CTkLabel(self, text="Power Point Creator Window")
         self.label.pack(padx=20, pady=20)
 
+        def process_input2():
+            source1 = self.source_entry1.get()
+            source2 = self.source_entry2.get()
+            dest = self.destination_entry.get()
+            Matcher.merge_ppts(source1,source2,dest)
+
+
         def browse_file_option1():
             file_path = tk.filedialog.askopenfilename(parent=self,filetypes=[("PowerPoint files", "*.pptx")],initialdir="/")
             self.source_entry1.delete(0, tk.END)
@@ -119,7 +127,7 @@ class PPCreatorWindow(customtkinter.CTkToplevel):
         self.browse_button3 = customtkinter.CTkButton(self, text="Browse",text_color='black',fg_color="orange",border_width=2,border_color="black", command=browse_file_destination)
         self.browse_button3.pack(pady=10)
 
-        self.ok_button1 =customtkinter.CTkButton(self, text="OK",text_color='black',fg_color="orange",border_width=2,border_color="black")
+        self.ok_button1 =customtkinter.CTkButton(self, text="OK",text_color='black',fg_color="orange",border_width=2,border_color="black",command=process_input2)
         self.ok_button1.pack(side=customtkinter.LEFT,padx=10)
         
         self.close_button = customtkinter.CTkButton(self, text="Close",text_color='black',fg_color="orange",border_width=2,border_color="black", command=self.destroy)
